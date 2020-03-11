@@ -1,52 +1,56 @@
-'use strict';
-var cheerio = require('cheerio');
-var he = require('he');
-var hl = require('highlight.js');
-var loaderUtils = require('loader-utils');
+"use strict";
+var cheerio = require("cheerio");
+var he = require("he");
+var hl = require("highlight.js");
+var loaderUtils = require("loader-utils");
 var highlightAuto = hl.highlightAuto;
 var highlight = hl.highlight;
 
 module.exports = function(input) {
-  input = input || '';
+  input = input || "";
 
   this.cacheable();
   var query = loaderUtils.parseQuery(this.query);
 
-  if(query.exec) {
+  if (query.exec) {
     input = this.exec(input, this.resource);
   }
 
-  if(query.raw) {
-    return 'module.exports = ' + JSON.stringify(highlightCode(input, query.lang));
+  if (query.raw) {
+    return (
+      "module.exports = " + JSON.stringify(highlightCode(input, query.lang))
+    );
   }
 
   var $ = cheerio.load(input);
 
-  $('code').replaceWith(function(i, e) {
+  $("code").replaceWith(function(i, e) {
     var $e = $(e);
     var text = $e.text();
 
-    if(text.split('\n').length < 2) {
-      return $('<code>' + he.encode(text) + '</code>');
+    if (text.split("\n").length < 2) {
+      return $("<code>" + he.encode(text) + "</code>");
     }
 
     var text = $e.text();
-    var klass = $e.attr('class') || '';
+    var klass = $e.attr("class") || "";
     var lang = klass.match(/(lang|language)-(.+)/);
     lang = lang && lang[2];
 
     return highlightCode(text, lang);
   });
 
-  $('pre').addClass('hljs');
+  $("pre").addClass("hljs");
 
-  return $.html();
+  return $("body").html();
 };
 
-function id(a) {return a;}
+function id(a) {
+  return a;
+}
 
 function highlightCode(code, lang) {
-  if(lang) {
+  if (lang) {
     return highlight(lang, code).value;
   }
 
