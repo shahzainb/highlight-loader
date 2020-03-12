@@ -1,4 +1,5 @@
-[![build status](https://secure.travis-ci.org/bebraw/highlight-loader.png)](http://travis-ci.org/bebraw/highlight-loader)
+[![build status](https://secure.travis-ci.org/shahzainb/highlight-loader.svg)](http://travis-ci.org/shahzainb/highlight-loader)
+
 # highlight-loader - Applies highlight.js to given module
 
 This loader can apply syntax-highlighting via [highlight.js](https://www.npmjs.com/package/highlight.js) in two ways:
@@ -41,17 +42,16 @@ Make sure [`highlightjs`](https://github.com/isagalaev/highlight.js) is included
 
 ## Usage
 
-Add `highlight-loader` as a [webpack loader](https://webpack.github.io/docs/loaders.html):
+Add `@shahzainb/highlight-loader` as a [webpack loader](https://webpack.github.io/docs/loaders.html):
 
 ```javascript
 module: {
-  loaders: [
+  rules: [
     {
       test: /\.md$/,
-      loader: 'html!highlight!markdown',
-      include: PATHS.markdown
+      use: ["@shahzainb/highlight-loader", "markdown-loader"]
     }
-  ]
+  ];
 }
 ```
 
@@ -59,25 +59,26 @@ module: {
 
 ```javascript
 // Reading HTML from parsed markdown
-var highlightedMarkdown = require('html!highlight!markdown!./README.md');
+var highlightedMarkdown = require("html!highlight!markdown!./README.md");
 
 // Reading a file's raw contents and auto-detecting the language
-var highlightedRaw = require('html!highlight?raw=true!./example-script.js');
+var highlightedRaw = require("html!highlight?raw=true!./example-script.js");
 
 // Reading a file's raw contents and specifying the language
-var highlightedRawCss = require('html!highlight?raw=true&lang=css!./example-stylesheet.css');
+var highlightedRawCss = require("html!highlight?raw=true&lang=css!./example-stylesheet.css");
 
 // Reading HTML from a template loader
-var highlightedRenderedJadeTemplate = require('html!highlight?exec!apply!jade!./index.jade')
+var highlightedRenderedJadeTemplate = require("html!highlight?exec!apply!jade!./index.jade");
 ```
 
 ## Contributors
 
-* [David Clark](https://github.com/davidtheclark) - Added `raw` and `lang` parameters
-* [Zane Miller](https://github.com/ZaneMiller) - Added missing `hljs` class to `pre` element
-* [Javier Castro](https://github.com/jacargentina) - Added Node support
-* [Sidd Sridharan](https://github.com/sidd) - Added support for `exec` parameter
-* [M.K. Safi](https://github.com/msafi) - Added installation instructions
+- [Juho Vepsäläinen](https://github.com/bebraw) - Original maintainer and creator
+- [David Clark](https://github.com/davidtheclark) - Added `raw` and `lang` parameters
+- [Zane Miller](https://github.com/ZaneMiller) - Added missing `hljs` class to `pre` element
+- [Javier Castro](https://github.com/jacargentina) - Added Node support
+- [Sidd Sridharan](https://github.com/sidd) - Added support for `exec` parameter
+- [M.K. Safi](https://github.com/msafi) - Added installation instructions
 
 ## License
 

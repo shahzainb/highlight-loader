@@ -1,8 +1,8 @@
 {
-  "name": "highlight-loader",
+  "name": "@shahzainb/highlight-loader",
   "description": "Applies highlight.js to given HTML",
-  "author": "Juho Vepsalainen <bebraw@gmail.com>",
-  "version": "0.7.3",
+  "author": "Shahzain <shahzain@spacelab.digital>",
+  "version": "0.8.0",
   "main": "./index.js",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
@@ -20,11 +20,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bebraw/highlight-loader.git"
+    "url": "https://github.com/shahzainb/highlight-loader.git"
   },
-  "homepage": "https://github.com/bebraw/highlight-loader",
+  "homepage": "https://github.com/shahzainb/highlight-loader",
   "bugs": {
-    "url": "https://github.com/bebraw/highlight-loader/issues"
+    "url": "https://github.com/shahzainb/highlight-loader/issues"
   },
   "keywords": [
     "webpack",
